@@ -7,9 +7,11 @@
     "node": true
   },
   "rules": {
+    "no-trailing-spaces": ["off"],
     "arrow-parens": ["off"],
+    "object-curly-spacing": ["off"],
     "consistent-return": "off",
-    "comma-dangle": "off",
+    "comma-dangle": ["error", "always-multiline"],
     "generator-star-spacing": "off",
     "import/no-unresolved": ["error", { "ignore": ["electron"] }],
     "import/no-extraneous-dependencies": "off",
@@ -21,7 +23,8 @@
     "react/jsx-no-bind": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
     "react/prefer-stateless-function": "off",
-    "flowtype-errors/show-errors": 2
+    "react/forbid-prop-types": "off",
+    "semi": ["error", "never"]
   },
   "plugins": [
     "flowtype-errors",
