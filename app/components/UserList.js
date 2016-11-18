@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UserListRow from './UserListRow';
 
 export default class UserList extends Component {
   render() {
@@ -6,9 +7,9 @@ export default class UserList extends Component {
     console.log(users)
     return (
       <ul>
-        <li>{users[0]}</li>
-        <li>Kilian</li>
-        <li>...</li>
+        {Object.keys(users).map(
+          (key, index) => <UserListRow key={index} user={users[key]} />
+          )}
       </ul>
     );
   }
