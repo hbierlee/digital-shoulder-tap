@@ -1,0 +1,13 @@
+{
+  "users": {
+    "Henk": {
+      "displayName": "Henk Bierlee"
+    },
+    "Piet": {
+      "displayName": "Piet Janssen"
+    },
+    "Jasper": {
+      "displayName": "Jasper de Man"
+    }
+  }
+}
