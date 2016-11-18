@@ -1,12 +1,12 @@
 {
   "users": {
-    "Henk": {
+    "henk": {
       "displayName": "Henk Bierlee"
     },
-    "Piet": {
+    "piet": {
       "displayName": "Piet Janssen"
     },
-    "Jasper": {
+    "jasper": {
       "displayName": "Jasper de Man"
     }
   }
