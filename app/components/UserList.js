@@ -1,19 +1,19 @@
 import React, {
   Component,
   PropTypes,
-} from 'react';
-import UserListItem from './UserListItem';
-import styles from './UserList.css';
+} from 'react'
+import UserListItem from './UserListItem'
+import styles from './UserList.css'
 
 export default class UserList extends Component {
 
   static propTypes = {
     users: PropTypes.object.isRequired,
     performTapTo: PropTypes.func.isRequired,
-  };
+  }
 
   render() {
-    const { users, performTapTo } = this.props;
+    const { users, performTapTo } = this.props
     return (
       <div className={styles.container}>
         <ul className={styles.list}>
@@ -27,6 +27,6 @@ export default class UserList extends Component {
             )}
         </ul>
       </div>
-    );
+    )
   }
 }

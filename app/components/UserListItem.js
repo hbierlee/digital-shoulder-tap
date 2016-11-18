@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import styles from './UserList.css';
+import React, { Component, PropTypes } from 'react'
+import styles from './UserList.css'
 
 export default class UserListItem extends Component {
 
@@ -7,10 +7,10 @@ export default class UserListItem extends Component {
     userId: PropTypes.string.isRequired,
     user: PropTypes.object.isRequired,
     performTapTo: PropTypes.func.isRequired,
-  };
+  }
 
   render() {
-    const {user, userId, performTapTo} = this.props;
+    const {user, userId, performTapTo} = this.props
     return (
       <li
         className={styles.item}
@@ -18,6 +18,6 @@ export default class UserListItem extends Component {
       >
         {user.displayName}
       </li>
-    );
+    )
   }
 }

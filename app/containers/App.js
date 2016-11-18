@@ -1,54 +1,54 @@
 // @flow
-import React, { Component } from 'react';
-import moment from 'moment';
-import base from '../utils/base';
+import React, { Component } from 'react'
+import moment from 'moment'
+import base from '../utils/base'
 
-import UserList from '../components/UserList';
+import UserList from '../components/UserList'
 
 export default class App extends Component {
 
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.performTapTo = this.performTapTo.bind(this);
+    this.performTapTo = this.performTapTo.bind(this)
 
     this.state = {
       users: {},
       taps: {},
-    };
+    }
   }
 
   componentWillMount() {
     this.fetch = base.syncState('users/', {
       context: this,
       state: 'users',
-    });
+    })
 
     this.tapsRef = base.syncState('taps/', {
       context: this,
       state: 'taps',
-    });
+    })
   }
 
   componentWillUnmount() {
-    base.removeBinding(this.usersRef);
-    base.removeBinding(this.tapsRef);
+    base.removeBinding(this.usersRef)
+    base.removeBinding(this.tapsRef)
   }
 
   performTapTo(to) {
-    console.log('perform tap to ' + to);
-    const user = 'henk';
-    const timestamp = moment().valueOf();
-    const tap = { from: user, to, timestamp };
+    console.log('perform tap to ' + to)
+    const user = 'henk'
+    const timestamp = moment().valueOf()
+    const tap = { from: user, to, timestamp }
 
-    const taps = [...this.state.taps];
-    taps.push(tap);
-    this.setState({taps});
+    const taps = [...this.state.taps]
+    taps.push(tap)
+    this.setState({taps})
   }
 
   render() {
-    const users = this.state.users;
+    const users = this.state.users
 
     return (
       <div>
@@ -59,6 +59,6 @@ export default class App extends Component {
 
         <p>Made by team hackers</p>
       </div>
-    );
+    )
   }
 }
