@@ -41,7 +41,10 @@ export default class App extends Component {
     const user = 'henk';
     const timestamp = moment().valueOf();
     const tap = { from: user, to, timestamp };
-    this.setState({ taps: [this.state.taps, tap] });
+
+    const taps = [...this.state.taps];
+    taps.push(tap);
+    this.setState({taps});
   }
 
   render() {

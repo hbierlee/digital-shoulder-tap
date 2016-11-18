@@ -4,13 +4,20 @@ import styles from './UserList.css';
 export default class UserListItem extends Component {
 
   static propTypes = {
-    name: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
+    user: PropTypes.object.isRequired,
+    performTapTo: PropTypes.func.isRequired,
   };
 
   render() {
-    const name = this.props.name;
+    const {user, userId, performTapTo} = this.props;
     return (
-      <li className={styles.item}>{name}</li>
+      <li
+        className={styles.item}
+        onClick={() => performTapTo(userId)}
+      >
+        {user.displayName}
+      </li>
     );
   }
 }
