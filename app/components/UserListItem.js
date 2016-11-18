@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
-import styles from './UserList.css'
+import React, { Component, PropTypes } from 'react';
+import styles from './UserList.css';
 
 export default class UserListItem extends Component {
+
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+  };
+
   render() {
-    const user = this.props.user;
+    const name = this.props.name;
     return (
-      <li className={styles.item}>{user.displayName}</li>
+      <li className={styles.item}>{name}</li>
     );
   }
 }

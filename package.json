@@ -151,6 +151,7 @@
   "dependencies": {
     "electron-debug": "^1.0.1",
     "font-awesome": "^4.7.0",
+    "moment": "^2.16.0",
     "re-base": "^2.3.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
