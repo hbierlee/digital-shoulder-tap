@@ -63,11 +63,13 @@ app.on('ready', async() => {
   let windowPosition = (process.platform === 'win32') ? 'trayBottomCenter' : 'trayCenter';
 
   function createWindow() {
+    const width = 224
+    const height = 326
     mainWindow = new BrowserWindow({
       show: false,
       frame: false,
-      width: 400,
-      height: 400
+      width,
+      height,
     });
   }
 

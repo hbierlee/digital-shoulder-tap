@@ -61,19 +61,19 @@ export default class App extends Component {
     const {users, receivedTaps} = this.state
 
     return (
-      <div className="container">
+      <div className="page">
         <Navbar
           title="👉 Tap"
         />
+
         <SearchBar
           users={users}
         />
+
         <UserList
           users={users}
           performTapTo={this.performTapTo}
         />
-
-        <p>Made by team hakkers</p>
 
         <Tap
           user={this.user}

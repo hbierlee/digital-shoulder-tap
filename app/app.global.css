@@ -9,6 +9,7 @@ body {
   background-image: linear-gradient(45deg, rgba(0, 216, 255, .5) 10%, rgba(0, 1, 127, .7));
   font-family: 'Roboto', Arial, Helvetica, Helvetica Neue, serif;
   overflow-y: hidden;
+  margin: 0;
 }
 
 h1 {
@@ -25,26 +26,9 @@ h1 {
 }
 
 p {
-  font-size: 24px;
+  /*font-size: 24px;*/
 }
 
-ul {
-  margin: 20px 0px;
-  padding: 0px;
-  cursor: default;
-}
-
-li {
-  list-style: none;
-  font-size: 18px;
-  color: #333333;
-  line-height: 1.5em;
-}
-
-li:hover{
-  color: black;
-  font-weight: bold;
-}
 
 a {
   color: white;
@@ -58,11 +42,26 @@ a:hover {
   cursor: pointer;
 }
 
-.container {
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  
+  padding-left: 1.3em;
+}
+li:before {
+  content: "\f192"; /* FontAwesome Unicode */
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
+}
+
+.page {
   width: 224px;
   height: 326px;
   background-color: #F5F5F5;
-  border: yellow 4px solid;
 
   display: flex;
   flex-direction: column;
@@ -73,6 +72,7 @@ a:hover {
 .fa-times-circle {
   margin-left: 120px;
   color: white;
+  display: none;
 }
 
 .fa-search {
@@ -80,4 +80,12 @@ a:hover {
   top: 15px;
   left: 8px;
   color: #BDBDBD;
+  display: none;
+}
+
+::-webkit-input-placeholder {
+  color: #BDBDBD;
+  line-height: 39px;
+  font-size: 18px;
+
 }
