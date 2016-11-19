@@ -10,7 +10,7 @@ export default class Tap extends Component {
   // not called during initial render
   componentWillUpdate(nextProps) {
     if (nextProps.receivedTapsHaveSynced) {
-      // playAudio()
+      playAudio()
       console.log('ping')
     }
   }

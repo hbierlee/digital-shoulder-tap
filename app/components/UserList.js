@@ -3,7 +3,7 @@ import React, {
   PropTypes,
 } from 'react'
 import UserListItem from './UserListItem'
-import styles from './UserList.css'
+import styles from './Components.css'
 
 export default class UserList extends Component {
 

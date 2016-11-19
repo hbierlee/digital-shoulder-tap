@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import styles from './UserList.css'
+import styles from './Components.css'
 
 export default class UserListItem extends Component {
 
