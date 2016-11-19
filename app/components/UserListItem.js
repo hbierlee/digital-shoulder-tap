@@ -17,7 +17,8 @@ export default class UserListItem extends Component {
         className={styles.item}
         onClick={() => performTapTo(userId)}
       >
-        {user.displayName} ({this.props.online ? 'online' : 'offline'})
+        <i className={'fa fa-dot-circle-o ' + (this.props.online ? styles.online : styles.offline)} aria-hidden="true" />
+        {" " + user.displayName}
       </li>
     )
   }

@@ -21,7 +21,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-content: stretch; */
-} 
+}
 
 input[type=text]{
   /*flex: 1 0 212px;*/
@@ -37,8 +37,8 @@ input[type=text]{
   -moz-box-shadow: 0 2px 1px #777;
   box-shadow: 0 2px 1px #777;
   border: none;
-  
-  
+
+
   line-height: 39px;
   font-size: 18px;
 
@@ -85,12 +85,20 @@ input[type=text]{
   list-style:none;
 }
 .item:hover {
-    color: black; 
+    color: black;
     font-weight: bold;
     background-color: #e5e5e5;
 }
 
+.online {
+  color: green !important;
+}
+
+.offline {
+  color: red !important;
+}
+
 ul {
-  
+
 
 }
