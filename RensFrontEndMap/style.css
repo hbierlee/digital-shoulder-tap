@@ -1,0 +1,84 @@
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+#background{
+  width: 224px;
+  height: 326px;
+  background-color: #F5F5F5;
+}
+
+#navbar{
+  width: 224px;
+  height: 33px;
+  background-color: #2D9CDB;
+}
+
+.fa-times-circle{
+  margin-left: 120px;
+  color: white;
+}
+
+#searchbar{
+  position: relative;
+  width: 212px;
+  height: 39px;
+  margin: 5px auto;
+  border-radius: 3px;
+}
+
+.fa-search{
+  position: absolute;
+  top: 15px;
+  left: 8px;
+  color: #BDBDBD;
+}
+
+#title{
+  line-height: 33px;
+  color: white;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+#searchContent{
+  color: #BDBDBD;
+  line-height: 39px;
+  font-size: 18px;
+  margin-left: 30px;
+}
+
+#userList ul{
+  list-style: none;
+  font-size: 18px;
+  color: #333333;
+  line-height: 1.5em;
+}
+
+#userList li:hover{
+  color: black;
+  font-weight: bold;
+}
+input[type=text]{
+  background-color: #FAFAFA;
+  appearance: none;
+  -webkit-box-shadow: 0 1px 2px #777;
+  -moz-box-shadow: 0 2px 1px #777;
+  box-shadow: 0 2px 1px #777;
+  border: none;
+  width: 212px;
+  height: 39px;
+  margin: 5px auto;
+  border-radius: 3px;
+  line-height: 39px;
+  font-size: 18px;
+  padding-left: 30px;
+  color: #333333;
+}
+
+::-webkit-input-placeholder {
+  color: #BDBDBD;
+  line-height: 39px;
+  font-size: 18px;
+
+}
