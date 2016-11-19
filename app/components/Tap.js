@@ -25,7 +25,7 @@ export default class Tap extends Component {
 
     if (displayName) {
       const notificationText = `You received a tap from ${displayName}`
-      new Notification(notificationText)
+      new Notification(notificationText, {silent: true})
       playAudio()
       console.log('ping')
     } 
