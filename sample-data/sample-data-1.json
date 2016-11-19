@@ -3,11 +3,26 @@
     "henk": {
       "displayName": "Henk Bierlee"
     },
-    "piet": {
-      "displayName": "Piet Janssen"
+    "jim": {
+      "displayName": "Jim Janssen"
     },
     "jasper": {
       "displayName": "Jasper de Man"
+    },
+    "karel": {
+      "displayName": "Karel"
+    },
+    "piet": {
+      "displayName": "Piet"
+    },
+    "klaas": {
+      "displayName": "Klaas"
+    },
+    "joep": {
+      "displayName": "Joep"
+    },
+    "jan": {
+      "displayName": "Jan"
     }
   }
 }
