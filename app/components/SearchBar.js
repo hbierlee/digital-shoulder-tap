@@ -1,7 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import styles from './Components.css'
 
 export default class SearchBar extends Component {
+
+  static PropTypes = {
+    handleInputChange: PropTypes.func.isRequired,
+  }
 
   render() {
     return (
@@ -10,6 +14,7 @@ export default class SearchBar extends Component {
           type="text"
           placeholder="Filter..."
           name="username"
+          onChange={this.props.handleInputChange}
           autoFocus
         />
         <i
