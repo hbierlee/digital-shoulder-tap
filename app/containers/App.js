@@ -30,6 +30,11 @@ export default class App extends Component {
     this.fetch = base.syncState('users/', {
       context: this,
       state: 'users',
+      then() {
+        const users = {...this.state.users}
+        users[this.user].online = true
+        this.setState({users})
+      }
     })
 
     this.receivedTapsRef = base.syncState(`tapsByUser/${this.user}/`, {
@@ -45,6 +50,10 @@ export default class App extends Component {
   componentWillUnmount() {
     base.removeBinding(this.usersRef)
     base.removeBinding(this.receivedTapsRef)
+
+    const users = {...this.state.users}
+    users[this.user].online = false
+    this.setState({users})
   }
 
   performTapTo(to) {

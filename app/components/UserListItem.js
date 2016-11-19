@@ -7,6 +7,7 @@ export default class UserListItem extends Component {
     userId: PropTypes.string.isRequired,
     user: PropTypes.object.isRequired,
     performTapTo: PropTypes.func.isRequired,
+    online: PropTypes.bool,
   }
 
   render() {
@@ -16,7 +17,7 @@ export default class UserListItem extends Component {
         className={styles.item}
         onClick={() => performTapTo(userId)}
       >
-        {user.displayName}
+        {user.displayName} ({this.props.online ? 'online' : 'offline'})
       </li>
     )
   }

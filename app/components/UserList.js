@@ -23,6 +23,7 @@ export default class UserList extends Component {
             .map(
             (key, index) => <UserListItem
               userId={key}
+              online={users[key].online}
               user={users[key]}
               key={index}
               performTapTo={performTapTo}
