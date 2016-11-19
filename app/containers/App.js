@@ -6,6 +6,8 @@ import base from '../utils/base'
 import SearchBar from '../components/SearchBar'
 import UserList from '../components/UserList'
 import Tap from '../components/Tap'
+import Navbar from '../components/Navbar'
+
 
 export default class App extends Component {
 
@@ -56,11 +58,13 @@ export default class App extends Component {
 
   render() {
     console.log('render app')
-
     const {users, receivedTaps} = this.state
 
     return (
       <div className="container">
+        <Navbar
+          title="👉 Tap"
+        />
         <SearchBar
           users={users}
         />
