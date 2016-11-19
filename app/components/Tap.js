@@ -7,9 +7,13 @@ export default class Tap extends Component {
     receivedTaps: PropTypes.object,
   }
 
-  componentWillUpdate() {
-    playAudio()
-    console.log('ping')
+  // not called during initial render
+  componentWillUpdate(nextProps) {
+    console.log(nextProps)
+    if (nextProps.receivedTapsHaveSynced) {
+      playAudio()
+      console.log('ping')
+    }
   }
 
   render() {

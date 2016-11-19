@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import base from '../utils/base'
 
+import SearchBar from '../components/SearchBar'
 import UserList from '../components/UserList'
 import Tap from '../components/Tap'
 
@@ -19,6 +20,8 @@ export default class App extends Component {
       users: {},
       receivedTaps: [],
     }
+
+    this.receivedTapsHaveSynced = false
   }
 
   componentWillMount() {
@@ -31,6 +34,9 @@ export default class App extends Component {
       context: this,
       state: 'receivedTaps',
       asArray: true,
+      then() {
+        this.receivedTapsHaveSynced = true
+      },
     })
   }
 
@@ -54,10 +60,10 @@ export default class App extends Component {
     const {users, receivedTaps} = this.state
 
     return (
-      <div>
-        <h1>Digital Shoulder Tap</h1>
-
-        <h2>Users</h2>
+      <div className="container">
+        <SearchBar
+          users={users}
+        />
         <UserList
           users={users}
           performTapTo={this.performTapTo}
@@ -65,7 +71,11 @@ export default class App extends Component {
 
         <p>Made by team hakkers</p>
 
-        <Tap user={this.user} receivedTaps={receivedTaps} />
+        <Tap
+          user={this.user}
+          receivedTaps={receivedTaps}
+          receivedTapsHaveSynced={this.receivedTapsHaveSynced}
+        />
       </div>
     )
   }
