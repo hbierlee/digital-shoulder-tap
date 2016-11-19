@@ -22,7 +22,6 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    console.log(this.user)
     this.fetch = base.syncState('users/', {
       context: this,
       state: 'users',
