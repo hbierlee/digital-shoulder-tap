@@ -4,6 +4,7 @@ import moment from 'moment'
 import base from '../utils/base'
 
 import UserList from '../components/UserList'
+import Tap from '../components/Tap'
 
 export default class App extends Component {
 
@@ -13,51 +14,59 @@ export default class App extends Component {
 
     this.performTapTo = this.performTapTo.bind(this)
 
+    this.user = 'henk'
     this.state = {
       users: {},
-      taps: {},
+      receivedTaps: [],
     }
   }
 
   componentWillMount() {
+    console.log(this.user)
     this.fetch = base.syncState('users/', {
       context: this,
       state: 'users',
     })
 
-    this.tapsRef = base.syncState('taps/', {
+    this.receivedTapsRef = base.syncState(`tapsByUser/${this.user}/`, {
       context: this,
-      state: 'taps',
+      state: 'receivedTaps',
+      asArray: true,
     })
   }
 
   componentWillUnmount() {
     base.removeBinding(this.usersRef)
-    base.removeBinding(this.tapsRef)
+    base.removeBinding(this.receivedTapsRef)
   }
 
   performTapTo(to) {
-    console.log('perform tap to ' + to)
-    const user = 'henk'
-    const timestamp = moment().valueOf()
-    const tap = { from: user, to, timestamp }
+    const tap = { 
+      from: this.user, 
+      timestamp: moment().valueOf(),
+    }
 
-    const taps = [...this.state.taps]
-    taps.push(tap)
-    this.setState({taps})
+    base.push(`tapsByUser/${to}/`, {data: tap})
   }
 
   render() {
-    const users = this.state.users
+    console.log('render app')
+
+    const {users, receivedTaps} = this.state
 
     return (
       <div>
         <h1>Digital Shoulder Tap</h1>
 
         <h2>Users</h2>
-        <UserList users={users} performTapTo={this.performTapTo} />
+        <UserList
+          users={users}
+          performTapTo={this.performTapTo}
+        />
 
         <p>Made by team hackers</p>
+
+        <Tap user={this.user} receivedTaps={receivedTaps} />
       </div>
     )
   }
