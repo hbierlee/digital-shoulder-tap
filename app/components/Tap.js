@@ -7,16 +7,24 @@ export default class Tap extends Component {
     receivedTaps: PropTypes.object,
   }
 
-  componentWillUpdate() {
-    playAudio()
+  // not called during initial render
+  componentWillUpdate(nextProps) {
+    if (nextProps.receivedTapsHaveSynced) {
+      // playAudio()
+      console.log('ping')
+    }
   }
 
   render() {
-    const receivedTaps = this.props.receivedTaps
-    const lastReceivedTap = receivedTaps[receivedTaps.length - 1]
-
-    return (
-      <p>Last received tap from: {lastReceivedTap.from}</p>
-    )
+    return null
   }
 }
+
+// TODO WHY DOES THIS NOT WORK??!?!?!
+// { receivedTaps && receivedTaps.length > 0 ? 
+//         <p>
+//           Last received tap from: {receivedTaps[receivedTaps.length - 1].from} 
+//         </p>
+//         :
+//         <p>No taps received yet</p>
+//       }
