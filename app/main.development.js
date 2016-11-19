@@ -1,4 +1,6 @@
-import { app, BrowserWindow, Menu, shell } from 'electron';
+import {app, BrowserWindow, Menu, shell, Tray} from 'electron';
+import path from 'path';
+import Positioner from 'electron-positioner';
 
 let menu;
 let template;
@@ -21,7 +23,7 @@ app.on('window-all-closed', () => {
 });
 
 
-const installExtensions = async () => {
+const installExtensions = async() => {
   if (process.env.NODE_ENV === 'development') {
     const installer = require('electron-devtools-installer'); // eslint-disable-line global-require
 
@@ -33,26 +35,52 @@ const installExtensions = async () => {
     for (const name of extensions) { // eslint-disable-line
       try {
         await installer.default(installer[name], forceDownload);
-      } catch (e) {} // eslint-disable-line
+      } catch (e) {
+      } // eslint-disable-line
     }
   }
 };
 
-app.on('ready', async () => {
+app.on('ready', async() => {
   await installExtensions();
 
-  mainWindow = new BrowserWindow({
-    show: false,
-    width: 1024,
-    height: 728
-  });
+  // stuff to make the window a tray menubar
+  const iconPath = path.join(__dirname, 'IconTemplate.png')
+  console.log(iconPath);
+  const tray = new Tray(iconPath)
 
-  mainWindow.loadURL(`file://${__dirname}/app.html`);
+  let cachedBounds
+  tray.on('click', clicked)
+  tray.on('right-click', clicked)
+  tray.on('double-click', clicked)
 
-  mainWindow.webContents.on('did-finish-load', () => {
-    mainWindow.show();
-    mainWindow.focus();
-  });
+  let supportsTrayHighlightState = false
+  try {
+    tray.setHighlightMode('never')
+    supportsTrayHighlightState = true
+  } catch (e) {
+  }
+
+  let windowPosition = (process.platform === 'win32') ? 'trayBottomCenter' : 'trayCenter';
+
+  function createWindow() {
+    mainWindow = new BrowserWindow({
+      show: false,
+      frame: false,
+      width: 400,
+      height: 400
+    });
+  }
+
+  createWindow()
+
+  const positioner = new Positioner(mainWindow)
+
+  mainWindow.loadURL(`file://${__dirname}/app.html`)
+
+  mainWindow.on('blur', hideWindow())
+
+  mainWindow.setVisibleOnAllWorkspaces(true)
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -61,7 +89,7 @@ app.on('ready', async () => {
   if (process.env.NODE_ENV === 'development') {
     mainWindow.openDevTools();
     mainWindow.webContents.on('context-menu', (e, props) => {
-      const { x, y } = props;
+      const {x, y} = props;
 
       Menu.buildFromTemplate([{
         label: 'Inspect element',
@@ -271,4 +299,47 @@ app.on('ready', async () => {
     menu = Menu.buildFromTemplate(template);
     mainWindow.setMenu(menu);
   }
+
+  function clicked(e, bounds) {
+    if (e.altKey || e.shiftKey || e.ctrlKey || e.metaKey) return hideWindow()
+    if (mainWindow && mainWindow.isVisible()) return hideWindow()
+    cachedBounds = bounds || cachedBounds
+    showWindow(cachedBounds)
+  }
+
+  function showWindow(trayPos) {
+    if (supportsTrayHighlightState) tray.setHighlightMode('always')
+    if (!mainWindow) {
+      createWindow()
+    }
+
+    if (trayPos && trayPos.x !== 0) {
+      // Cache the bounds
+      cachedBounds = trayPos
+    } else if (cachedBounds) {
+      // Cached value will be used if showWindow is called without bounds data
+      trayPos = cachedBounds
+    } else if (tray.getBounds) {
+      // Get the current tray bounds
+      trayPos = tray.getBounds()
+    }
+
+    // Default the window to the right if `trayPos` bounds are undefined or null.
+    var noBoundsPosition = null
+    if ((trayPos === undefined || trayPos.x === 0) && windowPosition.substr(0, 4) === 'tray') {
+      noBoundsPosition = (process.platform === 'win32') ? 'bottomRight' : 'topRight'
+    }
+
+    var position = positioner.calculate(noBoundsPosition || windowPosition, trayPos)
+
+    mainWindow.setPosition(position.x, position.y)
+    mainWindow.show()
+  }
+
+  function hideWindow() {
+    if (supportsTrayHighlightState) tray.setHighlightMode('never')
+    if (!mainWindow) return
+    mainWindow.hide()
+  }
+
 });
