@@ -11,15 +11,16 @@ import Navbar from '../components/Navbar'
 
 export default class App extends Component {
 
-
   constructor(props) {
     super(props)
 
     this.performTapTo = this.performTapTo.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
     this.user = process.env.USER
     this.state = {
       users: {},
       receivedTaps: [],
+      input: '',
     }
 
     this.receivedTapsHaveSynced = false
@@ -55,9 +56,22 @@ export default class App extends Component {
     base.push(`tapsByUser/${to}/`, {data: tap})
   }
 
+  handleInputChange(event) {
+    const input = event.target.value
+    this.setState({input})
+  }
+
   render() {
     console.log('render app')
-    const {users, receivedTaps} = this.state
+    const {users, receivedTaps, input} = this.state
+
+    let lastReceivedTap = null
+    let receivedFromDisplayName = null
+
+    if (receivedTaps && receivedTaps.length > 0) {
+      lastReceivedTap = receivedTaps[receivedTaps.length - 1]
+      receivedFromDisplayName = users[lastReceivedTap.from].displayName
+    }
 
     return (
       <div className="page">
@@ -67,16 +81,18 @@ export default class App extends Component {
 
         <SearchBar
           users={users}
+          handleInputChange={this.handleInputChange}
         />
 
         <UserList
           users={users}
           performTapTo={this.performTapTo}
+          filter={input}
         />
 
         <Tap
-          user={this.user}
-          receivedTaps={receivedTaps}
+          lastReceivedTap={lastReceivedTap}
+          receivedFromDisplayName={receivedFromDisplayName}
           receivedTapsHaveSynced={this.receivedTapsHaveSynced}
         />
       </div>
