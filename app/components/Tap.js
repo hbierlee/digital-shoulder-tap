@@ -4,14 +4,18 @@ import { playAudio } from '../utils/audioplayer'
 export default class Tap extends Component {
 
   static PropTypes = {
-    receivedTaps: PropTypes.object
+    lastReceivedTap: PropTypes.object,
+    receivedFromDisplayName: PropTypes.string,
+    receivedTapsHaveSynced: PropTypes.bool,
   }
 
   // not called during initial render
   componentWillUpdate(nextProps) {
-    if (nextProps.receivedTapsHaveSynced) {
+    if (nextProps.receivedTapsHaveSynced) { 
       playAudio()
-      new Notification("You received a tap from " + this.props.user.displayName)
+
+      const notificationText = `You received a tap from ${nextProps.receivedFromDisplayName}`
+      new Notification(notificationText)
       console.log('ping')
     }
   }

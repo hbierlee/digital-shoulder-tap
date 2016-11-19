@@ -60,6 +60,14 @@ export default class App extends Component {
     console.log('render app')
     const {users, receivedTaps} = this.state
 
+    let lastReceivedTap = null
+    let receivedFromDisplayName = null
+
+    if (receivedTaps && receivedTaps.length > 0) {
+      lastReceivedTap = receivedTaps[receivedTaps.length - 1]
+      receivedFromDisplayName = users[lastReceivedTap.from].displayName
+    }
+
     return (
       <div className="page">
         <Navbar
@@ -76,8 +84,8 @@ export default class App extends Component {
         />
 
         <Tap
-          user={this.user}
-          receivedTaps={receivedTaps}
+          lastReceivedTap={lastReceivedTap}
+          receivedFromDisplayName={receivedFromDisplayName}
           receivedTapsHaveSynced={this.receivedTapsHaveSynced}
         />
       </div>
