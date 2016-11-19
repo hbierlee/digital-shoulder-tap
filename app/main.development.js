@@ -79,7 +79,7 @@ app.on('ready', async() => {
 
   mainWindow.loadURL(`file://${__dirname}/app.html`)
 
-  mainWindow.on('blur', hideWindow())
+  mainWindow.on('blur', hideWindow)
 
   mainWindow.setVisibleOnAllWorkspaces(true)
 
@@ -88,7 +88,7 @@ app.on('ready', async() => {
   });
 
   if (process.env.NODE_ENV === 'development') {
-    mainWindow.openDevTools();
+    // mainWindow.openDevTools();
     mainWindow.webContents.on('context-menu', (e, props) => {
       const {x, y} = props;
 
