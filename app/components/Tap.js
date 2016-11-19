@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { playAudio } from '../utils/audioplayer'
 
 export default class Tap extends Component {
 
@@ -6,8 +7,8 @@ export default class Tap extends Component {
     receivedTaps: PropTypes.object,
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    console.log('ping')
+  componentWillUpdate() {
+    playAudio()
   }
 
   render() {

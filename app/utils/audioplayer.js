@@ -1,4 +1,4 @@
 export function playAudio() {
-  const audio = new Audio(this.props.path);
-  audio.play('../resources/notification.mp3');
+  const audio = new Audio('../resources/notification.mp3');
+  audio.play();
 }
