@@ -4,13 +4,14 @@ import { playAudio } from '../utils/audioplayer'
 export default class Tap extends Component {
 
   static PropTypes = {
-    receivedTaps: PropTypes.object,
+    receivedTaps: PropTypes.object
   }
 
   // not called during initial render
   componentWillUpdate(nextProps) {
     if (nextProps.receivedTapsHaveSynced) {
       playAudio()
+      new Notification("You received a tap from " + this.props.user.displayName)
       console.log('ping')
     }
   }
@@ -21,9 +22,9 @@ export default class Tap extends Component {
 }
 
 // TODO WHY DOES THIS NOT WORK??!?!?!
-// { receivedTaps && receivedTaps.length > 0 ? 
+// { receivedTaps && receivedTaps.length > 0 ?
 //         <p>
-//           Last received tap from: {receivedTaps[receivedTaps.length - 1].from} 
+//           Last received tap from: {receivedTaps[receivedTaps.length - 1].from}
 //         </p>
 //         :
 //         <p>No taps received yet</p>
