@@ -45,8 +45,7 @@ app.on('ready', async() => {
   await installExtensions();
 
   // stuff to make the window a tray menubar
-  const iconPath = path.join(__dirname, 'IconTemplate.png')
-  console.log(iconPath);
+  const iconPath = path.join(__dirname, '../resources', 'IconTemplate.png')
   const tray = new Tray(iconPath)
 
   let cachedBounds
