@@ -149,6 +149,7 @@
     "webpack-validator": "^2.2.9"
   },
   "dependencies": {
+    "dotenv": "^2.0.0",
     "electron-debug": "^1.0.1",
     "electron-positioner": "^3.0.0",
     "font-awesome": "^4.7.0",

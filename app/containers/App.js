@@ -16,8 +16,7 @@ export default class App extends Component {
     super(props)
 
     this.performTapTo = this.performTapTo.bind(this)
-
-    this.user = 'henk'
+    this.user = process.env.USER
     this.state = {
       users: {},
       receivedTaps: [],
@@ -48,8 +47,8 @@ export default class App extends Component {
   }
 
   performTapTo(to) {
-    const tap = { 
-      from: this.user, 
+    const tap = {
+      from: this.user,
       timestamp: moment().valueOf(),
     }
 

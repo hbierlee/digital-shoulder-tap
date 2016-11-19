@@ -41,3 +41,9 @@ app/style.css.map
 dist
 main.js
 main.js.map
+
+# Exclude intellij files
+.idea/
+
+# Exclude environment variables
+.env
