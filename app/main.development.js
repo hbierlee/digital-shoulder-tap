@@ -1,4 +1,4 @@
-import {app, BrowserWindow, Menu, shell, Tray} from 'electron';
+import {app, BrowserWindow, Menu, shell, Tray, globalShortcut} from 'electron';
 import path from 'path';
 import Positioner from 'electron-positioner';
 
@@ -99,6 +99,16 @@ app.on('ready', async() => {
         }
       }]).popup(mainWindow);
     });
+  }
+
+  // Register a 'CommandOrControl+X' shortcut listener.
+  const ret = globalShortcut.register('Control+F10', () => {
+    if (mainWindow && mainWindow.isVisible()) return hideWindow()
+    else return showWindow(cachedBounds)
+  })
+
+  if (!ret) {
+    console.log('registration failed')
   }
 
   if (process.platform === 'darwin') {
@@ -344,3 +354,8 @@ app.on('ready', async() => {
   }
 
 });
+
+app.on('will-quit', () => {
+  // Unregister all shortcuts.
+  globalShortcut.unregisterAll()
+})
