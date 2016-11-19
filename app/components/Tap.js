@@ -4,32 +4,32 @@ import { playAudio } from '../utils/audioplayer'
 export default class Tap extends Component {
 
   static PropTypes = {
-    lastReceivedTap: PropTypes.object,
-    receivedFromDisplayName: PropTypes.string,
-    receivedTapsHaveSynced: PropTypes.bool,
+    receivedTaps: PropTypes.object,
+    users: PropTypes.object,
   }
 
-  // not called during initial render
-  componentWillUpdate(nextProps) {
-    if (nextProps.receivedTapsHaveSynced) { 
-      playAudio()
-
-      const notificationText = `You received a tap from ${nextProps.receivedFromDisplayName}`
-      new Notification(notificationText)
-      console.log('ping')
-    }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(this.props.receivedTaps)
+    const render = this.props.receivedTaps.length !== 0 && !Object.is(this.props.receivedTaps, nextProps.receivedTaps)
+    return render
   }
 
   render() {
+    const {receivedTaps, users} = this.props
+
+    const displayName =
+      users && receivedTaps && receivedTaps.length > 0 ?
+      users[receivedTaps[receivedTaps.length - 1].from].displayName
+      :
+      null
+
+    if (displayName) {
+      const notificationText = `You received a tap from ${displayName}`
+      new Notification(notificationText)
+      playAudio()
+      console.log('ping')
+    } 
     return null
   }
 }
 
-// TODO WHY DOES THIS NOT WORK??!?!?!
-// { receivedTaps && receivedTaps.length > 0 ?
-//         <p>
-//           Last received tap from: {receivedTaps[receivedTaps.length - 1].from}
-//         </p>
-//         :
-//         <p>No taps received yet</p>
-//       }
