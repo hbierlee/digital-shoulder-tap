@@ -16,7 +16,7 @@ export default class Tap extends Component {
     const lastReceivedTap = receivedTaps[receivedTaps.length - 1]
 
     return (
-      <p>Last received tap: {JSON.stringify(lastReceivedTap)}</p>
+      <p>Last received tap from: {lastReceivedTap.from}</p>
     )
   }
 }

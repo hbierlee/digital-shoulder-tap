@@ -64,7 +64,7 @@ export default class App extends Component {
           performTapTo={this.performTapTo}
         />
 
-        <p>Made by team hackers</p>
+        <p>Made by team hakkers</p>
 
         <Tap user={this.user} receivedTaps={receivedTaps} />
       </div>
